@@ -54,7 +54,6 @@ logo2 = colors.RANDOM + '''
      ________________________\\___//______________________________________
 '''
 
-#marche pas
 logo3 = colors.RANDOM + '''
                           ,_   ,-"-._
                     .___   \\'-._\  \`~,_
@@ -87,7 +86,7 @@ logo3 = colors.RANDOM + '''
 .'      888888888888888888888888888888888888, |            ;
          Y88888888888888888888888888888888888b;            /
 '''
-#marche pas
+
 logo4 = colors.RANDOM + '''
                        ---
                     -        --
@@ -139,7 +138,6 @@ logo5 = colors.RANDOM + '''
                                      `':/ `
 '''
 
-#marche pas
 logo6 = colors.RANDOM + '''
                     ____
                  _.' :  `._
@@ -172,7 +170,6 @@ logo6 = colors.RANDOM + '''
                  "-.t-._:'
 '''
 
-#marche pas
 logo7 = colors.RANDOM + '''
                                  ._
                               ,-'_ `-.
@@ -220,7 +217,6 @@ _  :  /  \              ;`-.                  :     `-.           ;
                                                   `.____..--'
 '''
 
-#marche pas
 logo8 = colors.RANDOM + '''
                      ______
                    <((((((\\\\
@@ -278,7 +274,6 @@ logo9 = colors.RANDOM + """
 %%%%%%%%%;sSSSSSS    `SSSSSSS
 """
 
-#marche pas
 logo10 = colors.RANDOM + """
                    ___
 	       .-'`   `'-.
@@ -409,7 +404,6 @@ logo12 = colors.RANDOM + '''
                              """"""""""
 '''
 
-#marche pas
 logo13 = colors.RANDOM + '''
              ________________________________________________
             /                                                \\
@@ -546,7 +540,6 @@ logo15 = colors.RANDOM + '''
 |     |_____________________________________________________   ________
  \__________________________________________________________| |________)
 '''
-os.system('cls')
 
 random = random.choice([logo1,
                         logo2,
@@ -587,136 +580,128 @@ while True:
     choice = int(input(prompt))
     while 1:
         if choice == 1:
-            os.system('cls')
-            logo = colors.RANDOM + '''
-              _____            _       _ ______             _                      _
-             / ____|          (_)     | |  ____|           (_)                    (_)
-            | (___   ___   ___ _  __ _| | |__   _ __   __ _ _ _ __   ___  ___ _ __ _ _ __   __ _
-             \___ \ / _ \ / __| |/ _` | |  __| | '_ \ / _` | | '_ \ / _ \/ _ \ '__| | '_ \ / _` |
-             ____) | (_) | (__| | (_| | | |____| | | | (_| | | | | |  __/  __/ |  | | | | | (_| |
-            |_____/ \___/ \___|_|\__,_|_|______|_| |_|\__, |_|_| |_|\___|\___|_|  |_|_| |_|\__, |
-                                                       __/ |                                __/ |
-                                                      |___/                                |___/
-            '''
-            print(logo)
-            tools = colors.RED + '''
-            {1}-- Phishing
-            {2}-- Spear-phishing
-            {3}-- Profil Generator
-            '''
-            print(tools)
-            choice = int(input(prompt))
-
-            if choice == 1:
+            while 2:
                 logo = colors.RANDOM + '''
-                 _____  _     _     _     _
-                |  __ \| |   (_)   | |   (_)
-                | |__) | |__  _ ___| |__  _ _ __   __ _
-                |  ___/| '_ \| / __| '_ \| | '_ \ / _` |
-                | |    | | | | \__ \ | | | | | | | (_| |
-                |_|    |_| |_|_|___/_| |_|_|_| |_|\__, |
-                                                   __/ |
-                                                  |___/
+          ____             _       _   _____             _                      _
+         / ___|  ___   ___(_) __ _| | | ____|_ __   __ _(_)_ __   ___  ___ _ __(_)_ __   __ _
+         \___ \ / _ \ / __| |/ _` | | |  _| | '_ \ / _` | | '_ \ / _ \/ _ \ '__| | '_ \ / _` |
+          ___) | (_) | (__| | (_| | | | |___| | | | (_| | | | | |  __/  __/ |  | | | | | (_| |
+         |____/ \___/ \___|_|\__,_|_| |_____|_| |_|\__, |_|_| |_|\___|\___|_|  |_|_| |_|\__, |
+                                                   |___/                                |___/
                 '''
+                print(logo)
+                tools = colors.RED + '''
+                {1}-- Phishing
+                {2}-- Spear-phishing
+                {3}-- Profil Generator
+                '''
+                print(tools)
+                choice = int(input(prompt))
+
+                if choice == 1:
+                    logo = colors.RANDOM + '''
+                      ____  _     _     _     _
+                     |  _ \| |__ (_)___| |__ (_)_ __   __ _
+                     | |_) | '_ \| / __| '_ \| | '_ \ / _` |
+                     |  __/| | | | \__ \ | | | | | | | (_| |
+                     |_|   |_| |_|_|___/_| |_|_|_| |_|\__, |
+                                                      |___/
+                    '''
 
         elif choice == 2:
-          os.system('cls')
-          logo = colors.RANDOM + '''
-             _____ _          _ _  _____          _
-            / ____| |        | | |/ ____|        | |
-           | (___ | |__   ___| | | |     ___   __| | ___
-            \___ \| '_ \ / _ \ | | |    / _ \ / _` |/ _ \\
-            ____) | | | |  __/ | | |___| (_) | (_| |  __/
-           |_____/|_| |_|\___|_|_|\_____\___/ \__,_|\___|
-          '''
+          while 3:
+              logo = colors.RANDOM + '''
+                  ____  _          _ _    ____          _
+                 / ___|| |__   ___| | |  / ___|___   __| | ___
+                 \___ \| '_ \ / _ \ | | | |   / _ \ / _` |/ _ \
+                  ___) | | | |  __/ | | | |__| (_) | (_| |  __/
+                 |____/|_| |_|\___|_|_|  \____\___/ \__,_|\___|
 
-          print(logo)
-          tools = colors.RED + '''
-          {1}-- Local
-          {2}-- Distant
-          '''
-          print(tools)
-          choice = int(input(prompt))
+              '''
+
+              print(logo)
+              tools = colors.RED + '''
+              {1}-- Local
+              {2}-- Distant
+              '''
+              print(tools)
+              choice = int(input(prompt))
+              if choice == 1:
+                  path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
+                  os.system('cp tools/shellcodeLocal.c ' + path)
+              elif choice == 2:
+                  path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
+                  os.system('cp tools/shellcodeLocal.c ' + path)
 
         elif choice == 3:
-          os.system('cls')
-          logo = colors.RANDOM + '''
-             _____       _  __  __ _                         _____                    __ _
-            / ____|     (_)/ _|/ _(_)               ___     / ____|                  / _(_)
-           | (___  _ __  _| |_| |_ _ _ __   __ _   ( _ )   | (___  _ __   ___   ___ | |_ _ _ __   __ _
-            \___ \| '_ \| |  _|  _| | '_ \ / _` |  / _ \/\  \___ \| '_ \ / _ \ / _ \|  _| | '_ \ / _` |
-            ____) | | | | | | | | | | | | | (_| | | (_>  <  ____) | |_) | (_) | (_) | | | | | | | (_| |
-           |_____/|_| |_|_|_| |_| |_|_| |_|\__, |  \___/\/ |_____/| .__/ \___/ \___/|_| |_|_| |_|\__, |
-                                            __/ |                 | |                             __/ |
-                                           |___/                  |_|                            |___/
-          '''
-          print(logo)
-          tools = colors.RED + '''
-          {1}-- Sniffing
-          {2}-- Spoofing
-          '''
-          print(tools)
-          choice = int(input(prompt))
+          while 4:
+              logo = colors.RANDOM + '''
+                  ____        _  __  __ _                ___     ____                     __ _
+                 / ___| _ __ (_)/ _|/ _(_)_ __   __ _   ( _ )   / ___| _ __   ___   ___  / _(_)_ __   __ _
+                 \___ \| '_ \| | |_| |_| | '_ \ / _` |  / _ \/\ \___ \| '_ \ / _ \ / _ \| |_| | '_ \ / _` |
+                  ___) | | | | |  _|  _| | | | | (_| | | (_>  <  ___) | |_) | (_) | (_) |  _| | | | | (_| |
+                 |____/|_| |_|_|_| |_| |_|_| |_|\__, |  \___/\/ |____/| .__/ \___/ \___/|_| |_|_| |_|\__, |
+                                                |___/                 |_|                            |___/
+              '''
+              print(logo)
+              tools = colors.RED + '''
+              {1}-- Sniffing
+              {2}-- Spoofing
+              '''
+              print(tools)
+              choice = int(input(prompt))
 
-          if choice == 1:
-            os.system('cls')
-            logo = colors.RANDOM + '''
-               _____       _  __  __ _
-              / ____|     (_)/ _|/ _(_)
-             | (___  _ __  _| |_| |_ _ _ __   __ _
-              \___ \| '_ \| |  _|  _| | '_ \ / _` |
-              ____) | | | | | | | | | | | | | (_| |
-             |_____/|_| |_|_|_| |_| |_|_| |_|\__, |
-                                              __/ |
-                                             |___/
-            '''
-            print(logo)
-            tools = colors.RED + '''
-            {1}-- Email Traffic
-            {2}-- FTP Passwords
-            {3}-- Web Traffics
-            {4}-- Telnet Passwords
-            {5}-- Router Configuration
-            {6}-- DNS Traffic
-            {7}-- TCP/IP Sniffing
-            '''
+              if choice == 1:
+                logo = colors.RANDOM + '''
+                  ____        _  __  __ _
+                 / ___| _ __ (_)/ _|/ _(_)_ __   __ _
+                 \___ \| '_ \| | |_| |_| | '_ \ / _` |
+                  ___) | | | | |  _|  _| | | | | (_| |
+                 |____/|_| |_|_|_| |_| |_|_| |_|\__, |
+                                                |___/
+                '''
+                print(logo)
+                tools = colors.RED + '''
+                {1}-- Email Traffic
+                {2}-- FTP Passwords
+                {3}-- Web Traffics
+                {4}-- Telnet Passwords
+                {5}-- Router Configuration
+                {6}-- DNS Traffic
+                {7}-- TCP/IP Sniffing
+                '''
 
-            print(tools)
-            choice = int(input(prompt))
+                print(tools)
+                choice = int(input(prompt))
 
-          if choice == 2:
-            os.system('cls')
-            logo = colors.RANDOM + '''
-               _____                    __ _
-              / ____|                  / _(_)
-             | (___  _ __   ___   ___ | |_ _ _ __   __ _
-              \___ \| '_ \ / _ \ / _ \|  _| | '_ \ / _` |
-              ____) | |_) | (_) | (_) | | | | | | | (_| |
-             |_____/| .__/ \___/ \___/|_| |_|_| |_|\__, |
-                    | |                             __/ |
-                    |_|                            |___/
-            '''
-            print(logo)
-            tools = colors.RED + '''
-            {1}-- MAC Flooding
-            {2}-- DHCP Attacks
-            {3}-- ARP Poisoning
-            {4}-- VoIP / SIP Spoofing
-            '''
-            print(tools)
-            choice = int(input(prompt))
+              if choice == 2:
+                logo = colors.RANDOM + '''
+                  ____                     __ _
+                 / ___| _ __   ___   ___  / _(_)_ __   __ _
+                 \___ \| '_ \ / _ \ / _ \| |_| | '_ \ / _` |
+                  ___) | |_) | (_) | (_) |  _| | | | | (_| |
+                 |____/| .__/ \___/ \___/|_| |_|_| |_|\__, |
+                       |_|                            |___/
+                '''
+                print(logo)
+                tools = colors.RED + '''
+                {1}-- MAC Flooding
+                {2}-- DHCP Attacks
+                {3}-- ARP Poisoning
+                {4}-- VoIP / SIP Spoofing
+                '''
+                print(tools)
+                choice = int(input(prompt))
 
         elif choice == 4:
-          while Loop:
-            Loop = 0
-            os.system('cls')
+          while 5:
             logo = colors.RANDOM + '''
-             ____         __  __             ____                  __ _
-            |  _ \       / _|/ _|           / __ \                / _| |
-            | |_) |_   _| |_| |_ ___ _ __  | |  | |_   _____ _ __| |_| | _____      __
-            |  _ <| | | |  _|  _/ _ \ '__| | |  | \ \ / / _ \ '__|  _| |/ _ \ \ /\ / /
-            | |_) | |_| | | | ||  __/ |    | |__| |\ V /  __/ |  | | | | (_) \ V  V /
-            |____/ \__,_|_| |_| \___|_|     \____/  \_/ \___|_|  |_| |_|\___/ \_/\_/
+              ____         __  __              ___                  __ _
+             | __ ) _   _ / _|/ _| ___ _ __   / _ \__   _____ _ __ / _| | _____      __
+             |  _ \| | | | |_| |_ / _ \ '__| | | | \ \ / / _ \ '__| |_| |/ _ \ \ /\ / /
+             | |_) | |_| |  _|  _|  __/ |    | |_| |\ V /  __/ |  |  _| | (_) \ V  V /
+             |____/ \__,_|_| |_|  \___|_|     \___/  \_/ \___|_|  |_| |_|\___/ \_/\_/
+
             '''
             print(logo)
             tools = colors.RED + '''
@@ -727,131 +712,129 @@ while True:
             choice = int(input(prompt))
 
         elif choice == 5:
-          os.system('cls')
-          logo = colors.RANDOM + '''
-           __          __  _       _    _            _    _
-           \ \        / / | |     | |  | |          | |  (_)
-            \ \  /\  / /__| |__   | |__| | __ _  ___| | ___ _ __   __ _
-             \ \/  \/ / _ \ '_ \  |  __  |/ _` |/ __| |/ / | '_ \ / _` |
-              \  /\  /  __/ |_) | | |  | | (_| | (__|   <| | | | | (_| |
-               \/  \/ \___|_.__/  |_|  |_|\__,_|\___|_|\_\_|_| |_|\__, |
-                                                                   __/ |
-                                                                  |___/
-          '''
-          print(logo)
-          tools = colors.RED + '''
-          {1}-- XSS Scanner & Exploit
-          {2}-- SQLi Scanner & Exploit
-          {3}-- LFI / RFI Scanner
-          {3}-- Enumeration
-          {4}-- WordPress Scanner & Bruteforcer
-          {5}-- DoS Attacks
-          {6}-- DDoS Attacks
-          {7}-- CSRF Scanner & Exploit
-          '''
-          print(tools)
-          choice = int(input(prompt))
+          while 6:
+              logo = colors.RANDOM + '''
+                 __        __   _       _   _            _    _
+                 \ \      / /__| |__   | | | | __ _  ___| | _(_)_ __   __ _
+                  \ \ /\ / / _ \ '_ \  | |_| |/ _` |/ __| |/ / | '_ \ / _` |
+                   \ V  V /  __/ |_) | |  _  | (_| | (__|   <| | | | | (_| |
+                    \_/\_/ \___|_.__/  |_| |_|\__,_|\___|_|\_\_|_| |_|\__, |
+                                                                      |___/
+              '''
+              print(logo)
+              tools = colors.RED + '''
+              {1}-- XSS Scanner & Exploit
+              {2}-- SQLi Scanner & Exploit
+              {3}-- LFI / RFI Scanner
+              {3}-- Enumeration
+              {4}-- WordPress Scanner & Bruteforcer
+              {5}-- DoS Attacks
+              {6}-- DDoS Attacks
+              {7}-- CSRF Scanner & Exploit
+              '''
+              print(tools)
+              choice = int(input(prompt))
 
         elif choice == 6:
-          os.system('cls')
-          logo = colors.RANDOM + '''
-            _____          _     ______            _       _ _        _   _
-           |  __ \        | |   |  ____|          | |     (_) |      | | (_)
-           | |__) |__  ___| |_  | |__  __  ___ __ | | ___  _| |_ __ _| |_ _  ___  _ __
-           |  ___/ _ \/ __| __| |  __| \ \/ / '_ \| |/ _ \| | __/ _` | __| |/ _ \| '_ \
-           | |  | (_) \__ \ |_  | |____ >  <| |_) | | (_) | | || (_| | |_| | (_) | | | |
-           |_|   \___/|___/\__| |______/_/\_\ .__/|_|\___/|_|\__\__,_|\__|_|\___/|_| |_|
-                                            | |
-                                            |_|
-          '''
+          while 7:
+              logo = colors.RANDOM + '''
+                  ____           _     _____            _       _ _        _   _
+                 |  _ \ ___  ___| |_  | ____|_  ___ __ | | ___ (_) |_ __ _| |_(_) ___  _ __
+                 | |_) / _ \/ __| __| |  _| \ \/ / '_ \| |/ _ \| | __/ _` | __| |/ _ \| '_ \
+                 |  __/ (_) \__ \ |_  | |___ >  <| |_) | | (_) | | || (_| | |_| | (_) | | | |
+                 |_|   \___/|___/\__| |_____/_/\_\ .__/|_|\___/|_|\__\__,_|\__|_|\___/|_| |_|
+                                                 |_|
+              '''
+              print(logo)
 
         elif choice == 7:
-          os.system('cls')
-          logo = colors.RANDOM + '''
-           ____             _       ______
-          |  _ \           | |     |  ____|
-          | |_) |_ __ _   _| |_ ___| |__ ___  _ __ ___ ___
-          |  _ <| '__| | | | __/ _ \  __/ _ \| '__/ __/ _ \\
-          | |_) | |  | |_| | ||  __/ | | (_) | | | (_|  __/
-          |____/|_|   \__,_|\__\___|_|  \___/|_|  \___\___|
-          '''
-          print(logo)
-          tools = colors.RED + '''
-          {1}-- SSH
-          {2}-- FTP
-          {3}-- WordPress
-          {4}-- G-Mail
-          {5}-- Facebook
-          {6}-- Zip File
-          {7}-- Instagram
-          {8}-- Twitter
-          '''
-          print(tools)
-          choice = int(input(prompt))
+          while 8:
+              logo = colors.RANDOM + '''
+                  ____             _       _____
+                 | __ ) _ __ _   _| |_ ___|  ___|__  _ __ ___ ___
+                 |  _ \| '__| | | | __/ _ \ |_ / _ \| '__/ __/ _ \
+                 | |_) | |  | |_| | ||  __/  _| (_) | | | (_|  __/
+                 |____/|_|   \__,_|\__\___|_|  \___/|_|  \___\___|
+            '''
+
+              print(logo)
+              tools = colors.RED + '''
+              {1}-- SSH
+              {2}-- FTP
+              {3}-- WordPress
+              {4}-- G-Mail
+              {5}-- Facebook
+              {6}-- Zip File
+              {7}-- Instagram
+              {8}-- Twitter
+              '''
+              print(tools)
+              choice = int(input(prompt))
 
         elif choice == 8:
-          os.system('cls')
-          logo = colors.RANDOM + '''
-            ____      _       _
-          /  __ \    (_)     | |
-          | |  | |___ _ _ __ | |_
-          | |  | / __| | '_ \| __|
-          | |__| \__ \ | | | | |_
-           \____/|___/_|_| |_|\__|
-          '''
-          print(logo)
-          tools = colors.RED + '''
-          {1}-- Instagram Info
-          {2}-- Twitter Info
-          {3}-- Person LookUp
-          {4}-- Username LookUp
-          {5}-- IP LookUp
-          {6}-- Employee Search
-          {7}-- Phone LookUp
-          {8}-- Facial Recognition
-          {9}-- LinkedIn LookUp
-          {10}-- Geolocation
-          '''
-          print(tools)
-          choice = int(input(prompt))
+          while 9:
+              logo = colors.RANDOM + '''
+                   ___      _       _
+                  / _ \ ___(_)_ __ | |_
+                 | | | / __| | '_ \| __|
+                 | |_| \__ \ | | | | |_
+                  \___/|___/_|_| |_|\__|
+            '''
+              print(logo)
+              tools = colors.RED + '''
+              {1}-- Instagram Info
+              {2}-- Twitter Info
+              {3}-- Person LookUp
+              {4}-- Username LookUp
+              {5}-- IP LookUp
+              {6}-- Employee Search
+              {7}-- Phone LookUp
+              {8}-- Facial Recognition
+              {9}-- LinkedIn LookUp
+              {10}-- Geolocation
+              '''
+              print(tools)
+              choice = int(input(prompt))
 
         elif choice == 9:
-          os.system('cls')
-          logo = colors.RANDOM + '''
-          __          ___          _                         _   _             _
-          \ \        / (_)        | |                   /\  | | | |           | |
-           \ \  /\  / / _ _ __ ___| | ___  ___ ___     /  \ | |_| |_ __ _  ___| | _____
-            \ \/  \/ / | | '__/ _ \ |/ _ \/ __/ __|   / /\ \| __| __/ _` |/ __| |/ / __|
-             \  /\  /  | | | |  __/ |  __/\__ \__ \  / ____ \ |_| || (_| | (__|   <\__ \\
-              \/  \/   |_|_|  \___|_|\___||___/___/ /_/    \_\__|\__\__,_|\___|_|\_\___/
-          '''
-          print(logo)
-          tools = colors.RED + '''
-          {1}-- Wireless Hijacking
-          {2}-- DoS Attacks
-          {3}-- Monitoring
-          '''
-          print(tools)
-          choice = int(input(prompt))
+          while 10:
+              logo = colors.RANDOM + '''
+                 __        ___          _                    _   _   _             _
+                 \ \      / (_)_ __ ___| | ___  ___ ___     / \ | |_| |_ __ _  ___| | _____
+                  \ \ /\ / /| | '__/ _ \ |/ _ \/ __/ __|   / _ \| __| __/ _` |/ __| |/ / __|
+                   \ V  V / | | | |  __/ |  __/\__ \__ \  / ___ \ |_| || (_| | (__|   <\__ \
+                    \_/\_/  |_|_|  \___|_|\___||___/___/ /_/   \_\__|\__\__,_|\___|_|\_\___/
+
+              '''
+              print(logo)
+              tools = colors.RED + '''
+              {1}-- Wireless Hijacking
+              {2}-- DoS Attacks
+              {3}-- Monitoring
+              '''
+              print(tools)
+              choice = int(input(prompt))
 
         elif choice == 10:
-          os.system('cls')
-          logo = colors.RANDOM + '''
-                                                       _
-               /\                                     (_)
-              /  \   _ __   ___  _ __  _   _ _ __ ___  _ _______
-             / /\ \ | '_ \ / _ \| '_ \| | | | '_ ` _ \| |_  / _ \\
-            / ____ \| | | | (_) | | | | |_| | | | | | | |/ /  __/
-           /_/    \_\_| |_|\___/|_| |_|\__, |_| |_| |_|_/___\___|
-                                        __/ |
-                                       |___/
-          '''
-          print(logo)
-          tools = colors.RED + '''
-          {1}-- Set HTTP Proxy
-          {2}-- Set HTTPS Proxy
-          {3}-- Change MAC Adress
-          {4}-- VPN (Personnal, ProtonVPN)
-          '''
-          print(tools)
-          choice = int(input(prompt))
+          while 11:
+              logo = colors.RANDOM + '''
+                     _                                      _
+                    / \   _ __   ___  _ __  _   _ _ __ ___ (_)_______
+                   / _ \ | '_ \ / _ \| '_ \| | | | '_ ` _ \| |_  / _ \
+                  / ___ \| | | | (_) | | | | |_| | | | | | | |/ /  __/
+                 /_/   \_\_| |_|\___/|_| |_|\__, |_| |_| |_|_/___\___|
+                                            |___/
+              '''
+              print(logo)
+              tools = colors.RED + '''
+              {1}-- Set HTTP Proxy
+              {2}-- Set HTTPS Proxy
+              {3}-- Change MAC Adress
+              {4}-- VPN (Personnal, ProtonVPN)
+              '''
+              print(tools)
+              choice = int(input(prompt))
+              if choice == 1:
+                  ip = input('Proxy\'s IP Adress: ')
+                  port = input('Proxy\'s Port: ')
+                  os.system('export http_proxy=http://' + ip + ':' + port)
