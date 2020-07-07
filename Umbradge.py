@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os, sys, random
 import subprocess
 from tools import *
@@ -574,6 +576,7 @@ while True:
     {10}-- Anonymize
     {0}-- Install & Update
     {99}-- Exit
+    {100}--Donation
     '''
     print(tools)
 
@@ -582,31 +585,17 @@ while True:
         if choice == 1:
             while 2:
                 logo = colors.RANDOM + '''
-          ____             _       _   _____             _                      _
-         / ___|  ___   ___(_) __ _| | | ____|_ __   __ _(_)_ __   ___  ___ _ __(_)_ __   __ _
-         \___ \ / _ \ / __| |/ _` | | |  _| | '_ \ / _` | | '_ \ / _ \/ _ \ '__| | '_ \ / _` |
-          ___) | (_) | (__| | (_| | | | |___| | | | (_| | | | | |  __/  __/ |  | | | | | (_| |
-         |____/ \___/ \___|_|\__,_|_| |_____|_| |_|\__, |_|_| |_|\___|\___|_|  |_|_| |_|\__, |
-                                                   |___/                                |___/
+
                 '''
                 print(logo)
                 tools = colors.RED + '''
                 {1}-- Phishing
                 {2}-- Spear-phishing
                 {3}-- Profil Generator
+                {99}-- Exit To Main Menu
                 '''
                 print(tools)
                 choice = int(input(prompt))
-
-                if choice == 1:
-                    logo = colors.RANDOM + '''
-                      ____  _     _     _     _
-                     |  _ \| |__ (_)___| |__ (_)_ __   __ _
-                     | |_) | '_ \| / __| '_ \| | '_ \ / _` |
-                     |  __/| | | | \__ \ | | | | | | | (_| |
-                     |_|   |_| |_|_|___/_| |_|_|_| |_|\__, |
-                                                      |___/
-                    '''
 
         elif choice == 2:
           while 3:
@@ -623,15 +612,81 @@ while True:
               tools = colors.RED + '''
               {1}-- Local
               {2}-- Distant
+              {3}-- Web
+              {4}-- Reverse
+              {99}-- Exit To Main Menu
               '''
               print(tools)
               choice = int(input(prompt))
               if choice == 1:
                   path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
                   os.system('cp tools/shellcodeLocal.c ' + path)
+                  time.sleep(3)
+                  print('\nI will return to the main menu in: ')
+                  print('\n5, ')
+                  time.sleep(1)
+                  print('4, ')
+                  time.sleep(1)
+                  print('3, ')
+                  time.sleep(1)
+                  print('2, ')
+                  time.sleep(1)
+                  print('1')
+                  break
+
               elif choice == 2:
                   path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
-                  os.system('cp tools/shellcodeLocal.c ' + path)
+                  os.system('cp tools/shellcodeDistant.c ' + path)
+                  time.sleep(3)
+                  print('\nI will return to the main menu in: ')
+                  print('\n5, ')
+                  time.sleep(1)
+                  print('4, ')
+                  time.sleep(1)
+                  print('3, ')
+                  time.sleep(1)
+                  print('2, ')
+                  time.sleep(1)
+                  print('1')
+                  break
+
+              elif choice == 3:
+                  path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
+                  os.system('cp tools/webShell.php ' + path)
+                  time.sleep(3)
+                  print('\nI will return to the main menu in: ')
+                  print('\n5, ')
+                  time.sleep(1)
+                  print('4, ')
+                  time.sleep(1)
+                  print('3, ')
+                  time.sleep(1)
+                  print('2, ')
+                  time.sleep(1)
+                  print('1')
+                  break
+
+              elif choice == 4:
+                  path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
+                  os.system('cp tools/reverseShell.php ' + path)
+                  print('Don\'t forget to change IP and PORT in the shell (in the file named reverseShell.php, you can see the changes you must to do by a "//Change It")')
+                  time.sleep(3)
+                  print('\nI will return to the main menu in: ')
+                  print('\n5, ')
+                  time.sleep(1)
+                  print('4, ')
+                  time.sleep(1)
+                  print('3, ')
+                  time.sleep(1)
+                  print('2, ')
+                  time.sleep(1)
+                  print('1')
+                  break
+
+              elif choice == 99:
+                  print(logo)
+                  print(tools)
+                  print(prompt)
 
         elif choice == 3:
           while 4:
@@ -647,6 +702,7 @@ while True:
               tools = colors.RED + '''
               {1}-- Sniffing
               {2}-- Spoofing
+              {99}-- Exit To Main Menu
               '''
               print(tools)
               choice = int(input(prompt))
@@ -668,7 +724,8 @@ while True:
                 {4}-- Telnet Passwords
                 {5}-- Router Configuration
                 {6}-- DNS Traffic
-                {7}-- TCP/IP Sniffing
+                {7}-- TCP/IP Sniffin12g
+                {99}-- Exit To Main Menu
                 '''
 
                 print(tools)
@@ -689,9 +746,15 @@ while True:
                 {2}-- DHCP Attacks
                 {3}-- ARP Poisoning
                 {4}-- VoIP / SIP Spoofing
+                {99}-- Exit To Main Menu
                 '''
                 print(tools)
                 choice = int(input(prompt))
+
+              elif choice == 99:
+                  print(logo)
+                  print(tools)
+                  print(prompt)
 
         elif choice == 4:
           while 5:
@@ -707,9 +770,17 @@ while True:
             tools = colors.RED + '''
             {1}-- Windows 32bits
             {2}-- Linux 32bits
+            {99}-- Exit To Main Menu
             '''
             print(tools)
             choice = int(input(prompt))
+
+            if choice == 1:
+                print('Not Ready For The Moment')
+            elif choice == 99:
+                print(logo)
+                print(tools)
+                print(prompt)
 
         elif choice == 5:
           while 6:
@@ -731,9 +802,17 @@ while True:
               {5}-- DoS Attacks
               {6}-- DDoS Attacks
               {7}-- CSRF Scanner & Exploit
+              {99}-- Exit To Main Menu
               '''
               print(tools)
               choice = int(input(prompt))
+
+              if choice == 1:
+                  print('Not Ready For The Moment')
+              elif choice == 99:
+                print(logo)
+                print(tools)
+                print(prompt)
 
         elif choice == 6:
           while 7:
@@ -746,6 +825,13 @@ while True:
                                                  |_|
               '''
               print(logo)
+
+              if choice == 1:
+                  print('Not Ready For The Moment')
+              elif choice == 99:
+                  print(logo)
+                  print(tools)
+                  print(prompt)
 
         elif choice == 7:
           while 8:
@@ -767,9 +853,17 @@ while True:
               {6}-- Zip File
               {7}-- Instagram
               {8}-- Twitter
+              {99}-- Exit To Main Menu
               '''
               print(tools)
               choice = int(input(prompt))
+
+              if choice == 1:
+                  print('Not Ready For The Moment')
+              elif choice == 99:
+                  print(logo)
+                  print(tools)
+                  print(prompt)
 
         elif choice == 8:
           while 9:
@@ -792,9 +886,17 @@ while True:
               {8}-- Facial Recognition
               {9}-- LinkedIn LookUp
               {10}-- Geolocation
+              {99}-- Exit To Main Menu
               '''
               print(tools)
               choice = int(input(prompt))
+
+              if choice == 1:
+                  print('Not Ready For The Moment')
+              elif choice == 99:
+                  print(logo)
+                  print(tools)
+                  print(prompt)
 
         elif choice == 9:
           while 10:
@@ -811,9 +913,17 @@ while True:
               {1}-- Wireless Hijacking
               {2}-- DoS Attacks
               {3}-- Monitoring
+              {99}-- Exit To Main Menu
               '''
               print(tools)
               choice = int(input(prompt))
+
+              if choice == 1:
+                  print('Not Ready For The Moment')
+              elif choice == 99:
+                  print(logo)
+                  print(tools)
+                  print(prompt)
 
         elif choice == 10:
           while 11:
@@ -828,7 +938,8 @@ while True:
               print(logo)
               tools = colors.RED + '''
               {1}-- Set HTTP Proxy
-              {2}-- Set HTTPS Proxy
+              {2}-- Set HTTPS ProxyBOT
+
               {3}-- Change MAC Adress
               {4}-- VPN (Personnal, ProtonVPN)
               '''
@@ -838,3 +949,24 @@ while True:
                   ip = input('Proxy\'s IP Adress: ')
                   port = input('Proxy\'s Port: ')
                   os.system('export http_proxy=http://' + ip + ':' + port)
+
+        elif choice == 99:
+          exit()
+
+        elif choice == 100:
+          while 12:
+              logo = colors.RANDOM + '''
+                ____                    _   _
+               |  _ \  ___  _ __   __ _| |_(_) ___  _ __
+               | | | |/ _ \| '_ \ / _` | __| |/ _ \| '_ \\
+               | |_| | (_) | | | | (_| | |_| | (_) | | | |
+               |____/ \___/|_| |_|\__,_|\__|_|\___/|_| |_|
+               '''
+              print(logo)
+              options = colors.RED + '''
+              {1}-- Back To The Menu
+              {2}-- Exit
+              '''
+              print(options)
+              print("If You Like My Project You Can Donate To My Monero's Wallet With This Adress: 41sKFAdaJFaWrcvGSbVPa2cdForXPufks2GdTFFtrMfoQfjeXJW7XnCaVDRPvUApgWQa26JNvmaBXP8HpRcz2ep23CBo7GU")
+              choice = int(input(prompt))
