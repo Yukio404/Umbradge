@@ -585,7 +585,12 @@ while True:
         if choice == 1:
             while 2:
                 logo = colors.RANDOM + '''
-
+                  ____             _       _   _____             _                      _
+                 / ___|  ___   ___(_) __ _| | | ____|_ __   __ _(_)_ __   ___  ___ _ __(_)_ __   __ _
+                 \___ \ / _ \ / __| |/ _` | | |  _| | '_ \ / _` | | '_ \ / _ \/ _ \ '__| | '_ \ / _` |
+                  ___) | (_) | (__| | (_| | | | |___| | | | (_| | | | | |  __/  __/ |  | | | | | (_| |
+                 |____/ \___/ \___|_|\__,_|_| |_____|_| |_|\__, |_|_| |_|\___|\___|_|  |_|_| |_|\__, |
+                                                           |___/                                |___/
                 '''
                 print(logo)
                 tools = colors.RED + '''
@@ -825,7 +830,13 @@ while True:
                                                  |_|
               '''
               print(logo)
-
+              tools = colors.RED + '''
+              {1}-- Privilege Escalation
+              {2}-- Process Migration
+              {3}-- Dump Password's Hash
+              {4}-- Erase Logs
+              {99}-- Exit To Main Menu
+              '''
               if choice == 1:
                   print('Not Ready For The Moment')
               elif choice == 99:
@@ -921,16 +932,14 @@ while True:
               if choice == 1:
                   print('Not Ready For The Moment')
               elif choice == 99:
-                  print(logo)
-                  print(tools)
-                  print(prompt)
+                  break
 
         elif choice == 10:
           while 11:
               logo = colors.RANDOM + '''
                      _                                      _
                     / \   _ __   ___  _ __  _   _ _ __ ___ (_)_______
-                   / _ \ | '_ \ / _ \| '_ \| | | | '_ ` _ \| |_  / _ \
+                   / _ \ | '_ \ / _ \| '_ \| | | | '_ ` _ \| |_  / _ \\
                   / ___ \| | | | (_) | | | | |_| | | | | | | |/ /  __/
                  /_/   \_\_| |_|\___/|_| |_|\__, |_| |_| |_|_/___\___|
                                             |___/
@@ -939,7 +948,6 @@ while True:
               tools = colors.RED + '''
               {1}-- Set HTTP Proxy
               {2}-- Set HTTPS ProxyBOT
-
               {3}-- Change MAC Adress
               {4}-- VPN (Personnal, ProtonVPN)
               '''
@@ -970,3 +978,6 @@ while True:
               print(options)
               print("If You Like My Project You Can Donate To My Monero's Wallet With This Adress: 41sKFAdaJFaWrcvGSbVPa2cdForXPufks2GdTFFtrMfoQfjeXJW7XnCaVDRPvUApgWQa26JNvmaBXP8HpRcz2ep23CBo7GU")
               choice = int(input(prompt))
+
+              if choice == 2:
+                  exit()
