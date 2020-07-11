@@ -2,7 +2,8 @@
 
 import os, sys, random
 import subprocess
-from tools import *
+from tools.ddos import *
+
 
 class colors:
     RED = '\033[31m'
@@ -30,16 +31,16 @@ logo1 = colors.RANDOM + '''
 logo2 = colors.RANDOM + '''
                             ,.--------._
                            /            ''.
-                         ,'                \     |"\                /\          /\
-                /"|     /                   \    |__"              ( \\        // )
-               "_"|    /           z#####z   \  //                  \ \\      // /
-                 \\  #####        ##------".  \//                    \_\\||||//_/
-                  \\/-----\     /          ".  \                      \/ _  _ \
+                         ,'                \     |"\                /\          /\\
+                /"|     /                   \    |__"              ( \\\        // )
+               "_"|    /           z#####z   \  //                  \ \\\      // /
+                 \\\  #####        ##------".  \//                    \_\\\||||//_/
+                  \\\/-----\     /          ".  \                      \/ _  _ \\
                    \|      \   |   ,,--..       \                    \/|(O)(O)|
                    | ,.--._ \  (  | ##   \)      \                  \/ |      |
                    |(  ##  )/   \ `-....-//       |///////////////_\/  \      /
                      '--'."      \                \              //     |____|
-                  /'    /         ) --.            \            ||     /      \
+                  /'    /         ) --.            \            ||     /      \\
                ,..|     \.________/    `-..         \   \       \|     \ 0  0 /
             _,##/ |   ,/   /   \           \         \   \       U    / \_//_/
           :###.-  |  ,/   /     \        /' ""\      .\        (     /
@@ -50,10 +51,10 @@ logo2 = colors.RANDOM + '''
      /++\#########\  \                      _,'    _/#########\ | ||
     /++++|#########|  \      .---..       ,/      ,'##########.\|_||
    //++++|#########\.  \.              ,-/      ,'########,+++++\\_\\
-  /++++++|##########\.   '._        _,/       ,'######,''++++++++\
- |+++++++|###########|       -----."        _'#######' +++++++++++\
-|+++++++|############\.     \\     //      /#######/++++ S@yaN +++\
-     ________________________\\___//______________________________________
+  /++++++|##########\.   '._        _,/       ,'######,''++++++++\\
+ |+++++++|###########|       -----."        _'#######' +++++++++++\\
+|+++++++|############\.     \\\     //      /#######/++++ S@yaN +++\\
+     ________________________\\\___//______________________________________
 '''
 
 logo3 = colors.RANDOM + '''
@@ -94,8 +95,8 @@ logo4 = colors.RANDOM + '''
                     -        --
                 --( /     \ )XXXXXXXXXXXXX
             --XXX(   O   O  )XXXXXXXXXXXXXXX-
-           /XXX(       U     )        XXXXXXX\
-         /XXXXX(              )--   XXXXXXXXXXX\
+           /XXX(       U     )        XXXXXXX\\
+         /XXXXX(              )--   XXXXXXXXXXX\\
         /XXXXX/ (      O     )   XXXXXX   \XXXXX\\
         XXXXX/   /            XXXXXX   \   \XXXXX----
         XXXXXX  /          XXXXXX         \  ----  -
@@ -176,38 +177,38 @@ logo7 = colors.RANDOM + '''
                                  ._
                               ,-'_ `-.
                               ::".^-. `.
-                              ||<    >. \
-                              |: _, _| \ \
+                              ||<    >. \\
+                              |: _, _| \ \\
                               : .'| '|  ;\`.
-                              _\ .`  '  | \ \
-                            .' `\ *-'   ;  . \
-                           '\ `. `.    /\   . \
+                              _\ .`  '  | \ \\
+                            .' `\ *-'   ;  . \\
+                           '\ `. `.    /\   . \\
                          _/  `. \  \  :  `.  `.;
                        _/ \  \ `-._  /|  `  ._/
-                      / `. `. `.   /  :    ) \
+                      / `. `. `.   /  :    ) \\
                       `;._.  \  _.'/   \ .' .';
                       /     .'`._.* /    .-' (
                     .'`._  /    ; .' .-'     ;
                     ; `._.:     |(    ._   _.'|
                     `._   ;     ; `.-'        |
                      |   / .-'./ .'  \ .     /:
-                     |  +.'  \ `-.   .\ *--*' ;\
+                     |  +.'  \ `-.   .\ *--*' ;\\
                      ;.' `. \ `.    /` `.    /  .
-                    /.L-'\_: L__..-*     \   ".  \
+                    /.L-'\_: L__..-*     \   ".  \\
                    :/ / .' `' ;   `-.     `.   \  .
-                   / /_/     /              \   ;  \
+                   / /_/     /              \   ;  \\
               |  _/ /       /          \     `./    .
-            `   .  ;       /    .'      `-.   ;      \
+            `   .  ;       /    .'      `-.   ;      \\
            --  /  /  --   ,    /           `"' \      .
-          .   .  '       /   .'                 `.     \
+          .   .  '       /   .'                 `.     \\
              /  /    `  /   /                  |  `-.   .
-        --  .  '   \   /                         `.  `-._\
+        --  .  '   \   /                         `.  `-._\\
        .   /  /       : `*.                    :   `.    `-.
           .  '    `   |    \                    \    `-._   `-._
      --  /  /   \     :     ;                    \              |
    .    .  '           ;                          `.  \      :  ;
        /  /   `       : \    \                      `. `._  /  /
-  --  .  '  \         |  `.   `.                      `-. `'  /\
+  --  .  '  \         |  `.   `.                      `-. `'  /\\
      /  .             ;         `-.              \       `-..'  ;
  `  .  '   `          |__                     |   `.         `-._.
 _  :  /  \              ;`-.                  :     `-.           ;
@@ -411,7 +412,7 @@ logo13 = colors.RANDOM + '''
             /                                                \\
            |    _________________________________________     |
            |   |                                         |    |
-           |   | root ~$                                 |    |
+           |   | Umbradge ~$                             |    |
            |   |                                         |    |
            |   |                                         |    |
            |   |                                         |    |
@@ -506,7 +507,7 @@ logo15 = colors.RANDOM + '''
   _____________________________________                        ________
  /     ________________________________| KLINGON COMBAT BLADE |________)
 |     |
-|     |                               /\
+|     |                               /\\
 |     |                              / |\\
 |     |                             / /\ \\
 |     |                            / /  \ \\
@@ -597,7 +598,7 @@ while True:
                 {1}-- Phishing
                 {2}-- Spear-phishing
                 {3}-- Profil Generator
-                {99}-- Exit To Main Menu
+                {99}-- Exit
                 '''
                 print(tools)
                 choice = int(input(prompt))
@@ -619,7 +620,7 @@ while True:
               {2}-- Distant
               {3}-- Web
               {4}-- Reverse
-              {99}-- Exit To Main Menu
+              {99}-- Exit
               '''
               print(tools)
               choice = int(input(prompt))
@@ -637,7 +638,7 @@ while True:
                   print('2, ')
                   time.sleep(1)
                   print('1')
-                  break
+                  exit()
 
               elif choice == 2:
                   path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
@@ -653,7 +654,7 @@ while True:
                   print('2, ')
                   time.sleep(1)
                   print('1')
-                  break
+                  exit()
 
               elif choice == 3:
                   path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
@@ -669,7 +670,7 @@ while True:
                   print('2, ')
                   time.sleep(1)
                   print('1')
-                  break
+                  exit()
 
               elif choice == 4:
                   path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
@@ -686,12 +687,10 @@ while True:
                   print('2, ')
                   time.sleep(1)
                   print('1')
-                  break
+                  exit()
 
               elif choice == 99:
-                  print(logo)
-                  print(tools)
-                  print(prompt)
+                  exit()
 
         elif choice == 3:
           while 4:
@@ -707,7 +706,7 @@ while True:
               tools = colors.RED + '''
               {1}-- Sniffing
               {2}-- Spoofing
-              {99}-- Exit To Main Menu
+              {99}-- Exit
               '''
               print(tools)
               choice = int(input(prompt))
@@ -730,7 +729,7 @@ while True:
                 {5}-- Router Configuration
                 {6}-- DNS Traffic
                 {7}-- TCP/IP Sniffin12g
-                {99}-- Exit To Main Menu
+                {99}-- Exit
                 '''
 
                 print(tools)
@@ -751,15 +750,13 @@ while True:
                 {2}-- DHCP Attacks
                 {3}-- ARP Poisoning
                 {4}-- VoIP / SIP Spoofing
-                {99}-- Exit To Main Menu
+                {99}-- Exit
                 '''
                 print(tools)
                 choice = int(input(prompt))
 
               elif choice == 99:
-                  print(logo)
-                  print(tools)
-                  print(prompt)
+                  exit()
 
         elif choice == 4:
           while 5:
@@ -775,7 +772,7 @@ while True:
             tools = colors.RED + '''
             {1}-- Windows 32bits
             {2}-- Linux 32bits
-            {99}-- Exit To Main Menu
+            {99}-- Exit
             '''
             print(tools)
             choice = int(input(prompt))
@@ -783,9 +780,7 @@ while True:
             if choice == 1:
                 print('Not Ready For The Moment')
             elif choice == 99:
-                print(logo)
-                print(tools)
-                print(prompt)
+                exit()
 
         elif choice == 5:
           while 6:
@@ -807,7 +802,7 @@ while True:
               {5}-- DoS Attacks
               {6}-- DDoS Attacks
               {7}-- CSRF Scanner & Exploit
-              {99}-- Exit To Main Menu
+              {99}-- Exit
               '''
               print(tools)
               choice = int(input(prompt))
@@ -815,16 +810,14 @@ while True:
               if choice == 1:
                   print('Not Ready For The Moment')
               elif choice == 99:
-                print(logo)
-                print(tools)
-                print(prompt)
+                exit()
 
         elif choice == 6:
           while 7:
               logo = colors.RANDOM + '''
                   ____           _     _____            _       _ _        _   _
                  |  _ \ ___  ___| |_  | ____|_  ___ __ | | ___ (_) |_ __ _| |_(_) ___  _ __
-                 | |_) / _ \/ __| __| |  _| \ \/ / '_ \| |/ _ \| | __/ _` | __| |/ _ \| '_ \
+                 | |_) / _ \/ __| __| |  _| \ \/ / '_ \| |/ _ \| | __/ _` | __| |/ _ \| '_ \\
                  |  __/ (_) \__ \ |_  | |___ >  <| |_) | | (_) | | || (_| | |_| | (_) | | | |
                  |_|   \___/|___/\__| |_____/_/\_\ .__/|_|\___/|_|\__\__,_|\__|_|\___/|_| |_|
                                                  |_|
@@ -835,14 +828,14 @@ while True:
               {2}-- Process Migration
               {3}-- Dump Password's Hash
               {4}-- Erase Logs
-              {99}-- Exit To Main Menu
+              {99}-- Exit
               '''
+              print(tools)
+              choice = int(input(prompt))
               if choice == 1:
                   print('Not Ready For The Moment')
               elif choice == 99:
-                  print(logo)
-                  print(tools)
-                  print(prompt)
+                  exit()
 
         elif choice == 7:
           while 8:
@@ -864,7 +857,7 @@ while True:
               {6}-- Zip File
               {7}-- Instagram
               {8}-- Twitter
-              {99}-- Exit To Main Menu
+              {99}-- Exit
               '''
               print(tools)
               choice = int(input(prompt))
@@ -872,9 +865,7 @@ while True:
               if choice == 1:
                   print('Not Ready For The Moment')
               elif choice == 99:
-                  print(logo)
-                  print(tools)
-                  print(prompt)
+                  exit()
 
         elif choice == 8:
           while 9:
@@ -897,17 +888,10 @@ while True:
               {8}-- Facial Recognition
               {9}-- LinkedIn LookUp
               {10}-- Geolocation
-              {99}-- Exit To Main Menu
+              {99}-- Exit
               '''
               print(tools)
               choice = int(input(prompt))
-
-              if choice == 1:
-                  print('Not Ready For The Moment')
-              elif choice == 99:
-                  print(logo)
-                  print(tools)
-                  print(prompt)
 
         elif choice == 9:
           while 10:
@@ -924,7 +908,7 @@ while True:
               {1}-- Wireless Hijacking
               {2}-- DoS Attacks
               {3}-- Monitoring
-              {99}-- Exit To Main Menu
+              {99}-- Exit
               '''
               print(tools)
               choice = int(input(prompt))
@@ -932,7 +916,7 @@ while True:
               if choice == 1:
                   print('Not Ready For The Moment')
               elif choice == 99:
-                  break
+                  Exit()
 
         elif choice == 10:
           while 11:
@@ -947,9 +931,9 @@ while True:
               print(logo)
               tools = colors.RED + '''
               {1}-- Set HTTP Proxy
-              {2}-- Set HTTPS ProxyBOT
+              {2}-- Set HTTPS Proxy
               {3}-- Change MAC Adress
-              {4}-- VPN (Personnal, ProtonVPN)
+              {4}-- VPN (OpenVPN)
               '''
               print(tools)
               choice = int(input(prompt))
@@ -957,6 +941,43 @@ while True:
                   ip = input('Proxy\'s IP Adress: ')
                   port = input('Proxy\'s Port: ')
                   os.system('export http_proxy=http://' + ip + ':' + port)
+                  exit()
+              if choice == 2:
+                  ip = input('Proxy\'s IP Adress: ')
+                  port = input('Proxy\'s Port: ')
+                  os.system('export https_proxy=https://' + ip + ':' + port)
+                  exit()
+              if choice == 3:
+                  choice = input("Do You Want to Chose You're Next MAC's Adress (default's choice = n) ? <y/n>")
+
+                  if choice == 'n' or 'N' or 'no' or 'NO':
+                      device = input("Do You Now Your Network's Device's Type ? <y/n>")
+                      if device == 'y' or 'Y' or 'yes' or 'YES':
+                          device = input("Network's Device's Type: ")
+                          print('\n')
+                          os.system('ifconfig \t' + device + '\tdown')
+                          os.system('macchanger -r ' + device)
+                          os.system('ifconfig\t' + device + '\tup')
+                          exit()
+                      if device == 'n' or 'N' or 'no' or 'NO':
+                          print("To Now Your Network's Device's Type, type 'ifconfig'")
+                          exit()
+
+                  if choice == 'y' or 'Y' or 'yes' or 'YES':
+                      macAdress = input("Fill Your Next Adress: ")
+                      device = input("Do You Now Your Network's Device's Type ? <y/n>")
+                      if device == 'y' or 'Y' or 'yes' or 'YES':
+                          device = input("Network's Device's Type: ")
+                          os.system('ifconfig ' + device + ' down')
+                          os.system('macchanger --mac ' + macAdress, device)
+                          os.system('ifconfig' + device + ' up')
+                          exit()
+                      if device == 'n' or 'N' or 'no' or 'NO':
+                          print("To Now Your Network's Device's Type, type 'ifconfig'")
+                          exit()
+              if choice == 4:
+                  print("Not Ready For The Moment")
+
 
         elif choice == 99:
           exit()
@@ -971,13 +992,5 @@ while True:
                |____/ \___/|_| |_|\__,_|\__|_|\___/|_| |_|
                '''
               print(logo)
-              options = colors.RED + '''
-              {1}-- Back To The Menu
-              {2}-- Exit
-              '''
-              print(options)
               print("If You Like My Project You Can Donate To My Monero's Wallet With This Adress: 41sKFAdaJFaWrcvGSbVPa2cdForXPufks2GdTFFtrMfoQfjeXJW7XnCaVDRPvUApgWQa26JNvmaBXP8HpRcz2ep23CBo7GU")
-              choice = int(input(prompt))
-
-              if choice == 2:
-                  exit()
+              exit()
