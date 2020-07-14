@@ -1,9 +1,23 @@
 # -*- coding: utf-8 -*-
 
+from ascii import headers
 import os, sys, random
+import socket
+import optparse
+from scapy.all import *
+from scapy.layers.inet import IP, UDP, TCP, ICMP
 import subprocess
 from tools.ddos import *
+from selenium import webdriver
+from random import randint
+import time
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+import numpy as np
 
+if not os.geteuid() == 0:
+    sys.exit("\nOnly root can run this script\n")
 
 class colors:
     RED = '\033[31m'
@@ -12,554 +26,7 @@ class colors:
     WHITE = '\033[37m'
     RANDOM = random.choice([BLUE, GREEN, WHITE])
 
-
-logo1 = colors.RANDOM + '''
-     0000             0000        7777777777777777/========___________
-   00000000         00000000      7777^^^^^^^7777/ || ||   ___________
-  000    000       000    000     777       7777/=========//
- 000      000     000      000             7777// ((     //
-0000      0000   0000      0000           7777//   \\   //
-0000      0000   0000      0000          7777//========//
-0000      0000   0000      0000         7777
-0000      0000   0000      0000        7777
- 000      000     000      000        7777
-  000    000       000    000       77777
-   00000000         00000000       7777777
-     0000             0000        777777777
-'''
-
-logo2 = colors.RANDOM + '''
-                            ,.--------._
-                           /            ''.
-                         ,'                \     |"\                /\          /\\
-                /"|     /                   \    |__"              ( \\\        // )
-               "_"|    /           z#####z   \  //                  \ \\\      // /
-                 \\\  #####        ##------".  \//                    \_\\\||||//_/
-                  \\\/-----\     /          ".  \                      \/ _  _ \\
-                   \|      \   |   ,,--..       \                    \/|(O)(O)|
-                   | ,.--._ \  (  | ##   \)      \                  \/ |      |
-                   |(  ##  )/   \ `-....-//       |///////////////_\/  \      /
-                     '--'."      \                \              //     |____|
-                  /'    /         ) --.            \            ||     /      \\
-               ,..|     \.________/    `-..         \   \       \|     \ 0  0 /
-            _,##/ |   ,/   /   \           \         \   \       U    / \_//_/
-          :###.-  |  ,/   /     \        /' ""\      .\        (     /
-         /####|   |   (.___________,---',/    |       |\=._____|  |_/
-        /#####|   |     \__|__|__|__|_,/             |####\    |  ||
-       /######\   \      \__________/                /#####|   \  ||
-      /|#######`. `\                                /#######\   | ||
-     /++\#########\  \                      _,'    _/#########\ | ||
-    /++++|#########|  \      .---..       ,/      ,'##########.\|_||
-   //++++|#########\.  \.              ,-/      ,'########,+++++\\_\\
-  /++++++|##########\.   '._        _,/       ,'######,''++++++++\\
- |+++++++|###########|       -----."        _'#######' +++++++++++\\
-|+++++++|############\.     \\\     //      /#######/++++ S@yaN +++\\
-     ________________________\\\___//______________________________________
-'''
-
-logo3 = colors.RANDOM + '''
-                          ,_   ,-"-._
-                    .___   \\'-._\  \`~,_
-                    _'. `~-,\ ~-.|     \\',
-                  .'   \    |    \  '  /  \\
-                 / ~-.  |   '    | .' ;  ; \\
-                 |.--    \ . '   /    |  . |\\
-                 / ., `\ |     `___  /  .  ||
-                 |/  \  \/\__.-'   `\;    / /
-                      \ /      .--.  |   / /
-                       /,     /    \ / .' /
-                      / \\\   /."".  |;  '(__,
-                    ,_|/_\ ._/___.\_|'   .-.;_,
-                   "==;_o_\ /_o__,==" \ / )) .'__,
-                  ,="/    |      "=,   ; _/   _.'
-                  %/\__..)_,)`-.__     /\%\%\.`.__,
-                .%/%/` .-._ _..-. `      `"%\%.--'
-                   ;   `;-.:..-'/|          |./
-               _.--|     ).___.-||          ;  `'--._
-             .'    |  o /|     / ;          /        `,
-            /      |   ( `----' /          /           \\
-           /       |    '------'         /`             \\
-          /         \  (     ,        .'`                \\
-         /           '._`---'     _.-'                    ;
-        /      /     `._`""""""""`                         ;
-       /     .'      ,__/`~|~`\                            |
-      /    ooooo,    \  \ '`)- |            ,              |
-    .'   d888888888ooo\ /'-'\ /o8888888o,    \             |
-  .'    888888888888888'._|_.'888888888888b   \            |
-.'      888888888888888888888888888888888888, |            ;
-         Y88888888888888888888888888888888888b;            /
-'''
-
-logo4 = colors.RANDOM + '''
-                       ---
-                    -        --
-                --( /     \ )XXXXXXXXXXXXX
-            --XXX(   O   O  )XXXXXXXXXXXXXXX-
-           /XXX(       U     )        XXXXXXX\\
-         /XXXXX(              )--   XXXXXXXXXXX\\
-        /XXXXX/ (      O     )   XXXXXX   \XXXXX\\
-        XXXXX/   /            XXXXXX   \   \XXXXX----
-        XXXXXX  /          XXXXXX         \  ----  -
----     XXX  /          XXXXXX      \           ---
-  --  --  /      /\  XXXXXX            /     ---=
-    -        /    XXXXXX              '--- XXXXXX
-      --\/XXX\ XXXXXX                      /XXXXX
-        \XXXXXXXXX                        /XXXXX/
-         \XXXXXX                         /XXXXX/
-           \XXXXX--  /                -- XXXX/
-            --XXXXXXX---------------  XXXXX--
-               \XXXXXXXXXXXXXXXXXXXXXXXX-
-                 --XXXXXXXXXXXXXXXXXX-
-'''
-
-logo5 = colors.RANDOM + '''
-                        .-.
-                _.--"""".o/         .-.-._
-             __'   ."""; {        _J ,__  `.
-            ; o\.-.`._.'J;       ; /  `- /  ;
-            `--i`". `" .';       `._ __.'   |
-                \  `"""   \         `;      :
-                 `."-.     ;     ____/     /
-                   `-.`     `-.-'    `"-..'
-     ___              `;__.-'"           `.
-  .-{_  `--._         /.-"                 `-.
- /    ""T    ""---...'  _.-""   """-.         `.
-;       /                 __.-"".    `.         `,             _..
- \     /            __.-""       '.    \          `.,__      .'L' }
-  `---"`-.__    __."    .-.       j     `.         :   `.  .' ,' /
-            """"       /   \     :        `.       |     F' \   ;
-                      ;     `-._,L_,-""-.   `-,    ;     `   ; /
-                       `.       7        `-._  `.__/_        \/
-                         \     _;            \  _.'  `-.     /
-                          `---" `.___,,      ;""        \  .'
-                                    _/       ;           `"
-                                 .-"     _,-'
-                                {       "";
-                                 ;-.____.'`.
-                                  `.  \ '.  :
-                                    \  : : /
-                                     `':/ `
-'''
-
-logo6 = colors.RANDOM + '''
-                    ____
-                 _.' :  `._
-             .-.'`.  ;   .'`.-.
-    __      / : ___\ ;  /___ ; \      __
-  ,'_ ""--.:__;".-.";: :".-.":__;.--"" _`,
-  :' `.t""--.. '<@.`;_  ',@>` ..--""j.' `;
-       `:-.._J '-.-'L__ `-- ' L_..-;'
-         "-.__ ;  .-"  "-.  : __.-"
-             L ' /.------.\ ' J
-              "-.   "--"   .-"
-             __.l"-:_JL_;-";.__
-          .-j/'.;  ;""""  / .'\\"-.
-        .' /:`. "-.:     .-" .';  `.
-     .-"  / ;  "-. "-..-" .-"  :    "-.
-  .+"-.  : :      "-.__.-"      ;-._   \\
-  ; \  `.; ;                    : : "+. ;
-  :  ;   ; ;                    : ;  : \:
- : `."-; ;  ;                  :  ;   ,/;
-  ;    -: ;  :                ;  : .-"'  :
-  :\     \  : ;             : \.-"      :
-   ;`.    \  ; :            ;.'_..--  / ;
-   :  "-.  "-:  ;          :/."      .'  :
-     \       .-`.\        /t-""  ":-+.   :
-      `.  .-"    `l    __/ /`. :  ; ; \  ;
-        \   .-" .-"-.-"  .' .'j \  /   ;/
-         \ / .-"   /.     .'.' ;_:'    ;
-          :-""-.`./-.'     /    `.___.'
-                \ `t  ._  /
-                 "-.t-._:'
-'''
-
-logo7 = colors.RANDOM + '''
-                                 ._
-                              ,-'_ `-.
-                              ::".^-. `.
-                              ||<    >. \\
-                              |: _, _| \ \\
-                              : .'| '|  ;\`.
-                              _\ .`  '  | \ \\
-                            .' `\ *-'   ;  . \\
-                           '\ `. `.    /\   . \\
-                         _/  `. \  \  :  `.  `.;
-                       _/ \  \ `-._  /|  `  ._/
-                      / `. `. `.   /  :    ) \\
-                      `;._.  \  _.'/   \ .' .';
-                      /     .'`._.* /    .-' (
-                    .'`._  /    ; .' .-'     ;
-                    ; `._.:     |(    ._   _.'|
-                    `._   ;     ; `.-'        |
-                     |   / .-'./ .'  \ .     /:
-                     |  +.'  \ `-.   .\ *--*' ;\\
-                     ;.' `. \ `.    /` `.    /  .
-                    /.L-'\_: L__..-*     \   ".  \\
-                   :/ / .' `' ;   `-.     `.   \  .
-                   / /_/     /              \   ;  \\
-              |  _/ /       /          \     `./    .
-            `   .  ;       /    .'      `-.   ;      \\
-           --  /  /  --   ,    /           `"' \      .
-          .   .  '       /   .'                 `.     \\
-             /  /    `  /   /                  |  `-.   .
-        --  .  '   \   /                         `.  `-._\\
-       .   /  /       : `*.                    :   `.    `-.
-          .  '    `   |    \                    \    `-._   `-._
-     --  /  /   \     :     ;                    \              |
-   .    .  '           ;                          `.  \      :  ;
-       /  /   `       : \    \                      `. `._  /  /
-  --  .  '  \         |  `.   `.                      `-. `'  /\\
-     /  .             ;         `-.              \       `-..'  ;
- `  .  '   `          |__                     |   `.         `-._.
-_  :  /  \              ;`-.                  :     `-.           ;
-    `"  `               |   `.                 \       `*-.__.-*"' \\
-' /  . \                ;_.  :`-._              `._                /
-                       /   `  . ; `"*-._                       _.-`
-                     .'"'    _;  `-.__                     _.-`
-                     `-.__.-"         `""---...___...--**"' |
-                                                  `.____..--'
-'''
-
-logo8 = colors.RANDOM + '''
-                     ______
-                   <((((((\\\\
-                   /      . }\\
-                   ;--..--._|}
-(\                 '--/\--'  )
- \\\                | '-'  :'|
-  \\\               . -==- .-|
-   \\\               \.__.'   \--._
-   [\\\          __.--|       //  _/'--.
-   \ \\\       .'-._ ('-----'/ __/      \\
-    \ \\\     /   __>|      | '--.       |
-     \ \\\   |   \   |     /    /       /
-      \ '\ /     \  |     |  _/       /
-       \  \       \ |     | /        /
-        \  \      \        /
-'''
-
-logo9 = colors.RANDOM + """
-                               ...,,,,,...
-                           ,%%%%%%%%%%%%%%%Ss,
-                          %%%%%%%%%%%%,,,%%%%SSs,.
-                      .,;;;;;;,%%%%%%,%%%%%,%%SSs%%
-                  ..;;;;;;;;;;;;;;,%%%%,,,,%%%SSS%'
-                 .;;;;;;;;;;;;;;;;;;%%,a@;;;%%%SS'
-               .,;;;;;;;;;;;;;;;;;;;%,a@;;  `%%SSS,.
-             ,;;;;;;;;;;;;;;;;;;;;;'%,@@;;,,,%%%SSSSSSSS'''.
-            ;;;;;;;;;;;;;;;;;;;;;;;,%%@@@aaaa%%%SSSSSSS,   ;
-          ,;;;;;;;;;;;;;;;;;;;;;;;;;,%%@@@@@%%%SSSSSSSSSs,,'
-         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;%%%%%%%%SSSSSSSSSSSS'
-        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;%%%%%%%SSSSSSSSSSS'
-       ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'%%%%%%%%SSSSSSSS'
-      ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,%%%%%%'
-      ;;;;,;;;;;;;;;;;;;;;;;;;;;;;;;;;;,%%%%%
-      ;;;,;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,%;%;%.
-      `;;,;;;;;;;;;;;;;;;;;;;;;;;,;;;;;;,sSSSSSSs%,
-        `,;;;;,;;;;;;;;;;;;;;;;;;;,;;;;'sSSSSSSSSSSS.
-          ;;;,;;;;;;;;;;;;;,;;;;;,;;;;'SSSSSSSSSSSSSSs
-           `;';;;;;;;;;;;;;,;;;;,;;;'sSSSSSSSSSSSSSsSSs.
-              `;;;;;;;;;;;,;;;;'%%%%;SSSSSSSSSSSSSSSSsSs
-             .,%%;;;;;;;;'%%%%%%%%%;sSSSSSSSSSSsSSSSSSsS
-          .,%%%%%`;;;'%%%%%%%%%%%%%;SSSSSSSSSSSSSsSSSSs'
-       .,%%%%%%%%%'%%%%%%%%%%%%%%%;sSSSSSSSSSSSSSSsSSS'
-   .,%%%%%%%%%%%%%%%%%%%%%%%%%%%%;sSSSSSSSSSSSSSSSsS'
- ,%%%%%%%%%%%%%%%%%%%%;%%%%%%%%%%;SSSSSSSSSSSSSSSs'
-%%%%%%%%%%%%%;%%%%%%%;%%%%%%%%%%;sSSSSSSSSSSSSSS'
-%%%%%%%%%%%%%%%;%%%%;%%%%%%%%%%%;SSSSSSSSSSSS'%%
-%%%%%%%%%%%%%%%%%;%;%%%%%%%%%%%;sSSSSSSSS'%%%%%%%
-%%%%%%%%%%%%%%%%%%;%%%%%%%%%%%;sSSSS'ssssSSSS%%%%%
-%%%%%%%%%%%%%%%%%%;%%%%%%%%%%%'      `SSSSSSSSS%%%%
-%%%%%%%%%%%%%%%%%;%%%%%%%%%%%'         `SSsSSSSSS%%%
-%%%%%%%%%%%%%%%%% %%%%%%%%%%'            S'`SSsSSSSSSs.
-%%%%%%%%%%%%%%%%' '%%%%%%%%'                 S'`SSssssSS.
-%%%%%%%%%%%%;sSSs   `SSSSSSs.                    `SSSS%SS
-%%%%%%%%%;sSSSSSS    `SSSSSSS
-"""
-
-logo10 = colors.RANDOM + """
-                   ___
-	       .-'`   `'-.
-	   _,.'.===   ===.'.,_
-	  / /  .___. .___.  \ \\
-	 / /   ( o ) ( o )   \ \                                            _
-	: /|    '-'___'-'    |\ ;                                          (_)
-	| |`\_,.-'`   `"-.,_/'| |                                          /|
-	| |  \             /  | |                                         /\;
-	| |   \           /   | | _                              ___     /\/
-	| |    \   __    /\   | |' `\-.-.-.-.-.-.-.-.-.-.-.-.-./`   `"-,/\/
-	| |     \ (__)  /\ `-'| |    `\ \ \ \ \ \ \ \ \ \ \ \ \`\       \/
-	| |      \-...-/  `-,_| |      \`\ \ \ \ \ \ \ \ \ \ \ \ \       \\
-	| |       '---'    /  | |       | | | | | | | | | | | | | |       |
-	| |               |   | |       | | | | | | | | | | | | | |       |
-	\_/               |   \_/       | | | | | | | | | | | | | | .--.  ;
-	                  |       .--.  | | | | | | | | | | | | | | |  | /
-	                   \      |  | / / / / / / / / / / / / / /  |  |/
-	                   |`-.___|  |/-'-'-'-'-'-'-'-'-'-'-'-'-'`--|  |
-	            ,.-----'~~;   |  |                  (_(_(______)|  |
-	           (_(_(_______)  |  |                        ,-----`~~~\\
-	                    ,-----`~~~\                      (_(_(_______)
-	                   (_(_(_______)
-"""
-
-logo11 = colors.RANDOM + '''
-                       _..gggggppppp.._
-                  _.gd$$$$$$$$$$$$$$$$$$bp._
-               .g$$$$$$P^^""j$$b""""^^T$$$$$$p.
-            .g$$$P^T$$b    d$P T;       ""^^T$$$p.
-          .d$$P^"  :$; `  :$;                "^T$$b.
-        .d$$P'      T$b.   T$b                  `T$$b.
-       d$$P'      .gg$$$$bpd$$$p.d$bpp.           `T$$b
-      d$$P      .d$$$$$$$$$$$$$$$$$$$$bp.           T$$b
-     d$$P      d$$$$$$$$$$$$$$$$$$$$$$$$$b.          T$$b
-    d$$P      d$$$$$$$$$$$$$$$$$$P^^T$$$$P            T$$b
-   d$$P    '-'T$$$$$$$$$$$$$$$$$$bggpd$$$$b.           T$$b
-  :$$$      .d$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$p._.g.     $$$;
-  $$$;     d$$$$$$$$$$$$$$$$$$$$$$$P^"^T$$$$P^^T$$$;    :$$$
- :$$$     :$$$$$$$$$$$$$$:$$$$$$$$$_    "^T$bpd$$$$,     $$$;
- $$$;     :$$$$$$$$$$$$$$bT$$$$$P^^T$p.    `T$$$$$$;     :$$$
-:$$$      :$$$$$$$$$$$$$$P `^^^'    "^T$p.    lb`TP       $$$;
-:$$$      $$$$$$$$$$$$$$$              `T$$p._;$b         $$$;
-$$$;      $$$$$$$$$$$$$$;                `T$$$$:Tb        :$$$
-$$$;      $$$$$$$$$$$$$$$                        Tb    _  :$$$
-:$$$     d$$$$$$$$$$$$$$$.                        $b.__Tb $$$;
-:$$$  .g$$$$$$$$$$$$$$$$$$$p...______...gp._      :$`^^^' $$$;
- $$$;  `^^'T$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$p.    Tb._, :$$$
- :$$$       T$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$b.   "^"  $$$;
-  $$$;       `$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$b      :$$$
-  :$$$        $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$;     $$$;
-   T$$b    _  :$$`$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$;   d$$P
-    T$$b   T$g$$; :$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  d$$P
-     T$$b   `^^'  :$$ "^T$$$$$$$$$$$$$$$$$$$$$$$$$$$ d$$P
-      T$$b        $P     T$$$$$$$$$$$$$$$$$$$$$$$$$;d$$P
-       T$$b.      '       $$$$$$$$$$$$$$$$$$$$$$$$$$$$P
-        `T$$$p.   bug    d$$$$$$$$$$$$$$$$$$$$$$$$$$P'
-          `T$$$$p..__..g$$$$$$$$$$$$$$$$$$$$$$$$$$P'
-            "^$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$^"
-               "^T$$$$$$$$$$$$$$$$$$$$$$$$$$P^"
-                   """^^^T$$$$$$$$$$P^^^"""
-'''
-
-logo12 = colors.RANDOM + '''
-                            __          .gp.__/
-                       .ssSSSSSs.__    d$P^^^"
-                    .sSSSSSSS$$$$$$$p.dP
-                  .SSSSSS$$$$$SSSSSSSS$bs+._
-                .SSSS$$$$$SSSSS$$$$$$$SS$$$$b__                       /"-.
-                SSS$$$SSSSS$$$$$$$$SSSS$$$SSSS$b                   _/"-. /
-               :S$$$SSSSS$$$$$$$SSSSS$$$SSSS$$SSb                 //   /"-.
-               $$SSSSS$$$$$$SSSSS$$$$$$S$$$$S$$$Sb.               ;   /   /
-               SSSSS$$$$$SSSSS$$$$$$$SS'P   SS$$S`^b._.'         /:  :   /
-               :S$$$$$SSSSS$$$$$$$SSSP      :$SS$b              / ;  +-./
-                $$$$SSSS$$$$$$$SSSSSP        S$SS$;            / /  / / ;
-               d$$SSS$$$$$SSSSSSSSS' ,=._    :S':S$           / /  / / /
-              :$SSS$$$$SSSSSSSSS^"  '  _ ";  ;   S$          / /  / / /
-              SSS$$$SSSP.-TSS^"     .="$;   /    S;         / /  / / /
-             :SS$$$SSS$$ (;            "    \    P         / /  / : :
-             :S$$$SS$$$$b :                  \ .'         / /  /  :  \
-              T$$SS$$$$$j`-,    .          ,  \         /"-(  /   ;_-.\
-               `TSS$$$$P   ;    `.         `.-'        /  /\\\/   .'/_ ;;
-                 TS$$$P    :             _.-;         /  /\\\(   / /-" ;;
-                  SSS'      \           :-t"         : .-\\\/ "-/":   //
-                .SS$$        `.          `-;         )Y   y   /  ;  J/
-               :S$$$;          "-.        (          '"; j_.-/-./.-" \_
-               $S$SS              "j.     :            :/  ':    `-..' \
-              d$$SS;     :        /  "-._.'             `.  ;       `-./;
-            _S$$$SP       \      :                        \: :"-.      \;
-          ,$$$SSSj       , `.    ;                         : ;   "-,   /
-          S$$SS'"^-...___       : "-.                      ;/      ;  t
-      __.-`SS'---. `T$$$$$$q._       "-.                  / `.    /   ;
-  .-""__ `.'      `. `T$$$$$$$$b.       `.               :    "--"   /
- /.-""  \/          `. T$$$$$$$$$$p.     .`._            /"-.  _   .'
-::      /             \ T$$$$$SS$$$$$b._  `.T$p.        /    "" ;-'
-;;     :               \ T$$$S$$$$$$$$$$$p._L$$$$p.    /       ,
-;;     ;                \ $$$$$$$$$$$$$$$$$$$SS$$$$$. /
-::     ;                 ;:$$$$$$$$$$$$$$SSSSSSSSS$$$y        '
- ;;    :                  "^$$$$$$$$$$$$$$$$$SSSS$$$P        /
- ;;     b.                   "^$$$$$$$$$$$$$$$$$S$$'        /
- ::     :$$p.  -._              "^$$$$$$$$$$$$$$$'         /
-  ;;     $$$$$p.                   "^$$$$$$$$$$P          /
-  ::     :$$$$$$p.                    "^$$$$$$P          ,
-   ;;     T$$$$$$$$p.                    "^$$P
-   ::      T$$$$$$$P "-.                    "           '
-   s;;      $$$$$$P   d$$p._                     /     /
-  S$$:      $$$$$t   d$$$$$$$p._          "-.  .'     /
-  SS$;;     :P^"\ \.d$$$$$$$$$$$$p._         ""      /
-   TS::      \   d$$$$$$$$$$$$$$$$$$$p._            /
-    SS.\     .jq$$$$$$$$$$$$$$$$$$^^^^^""-._      .';
-   $$$$.tsssj' `T$$$$$$$^^^^^"""            "-._.'  ;
-   $$$SSS         \                 /            \ :
-   '^SSS_          \               :          :    :
-     $$$SS.         \              ;          :    ;
-     '$$$SS          \            :           ;   :
-       "^S$.          \           ;          :    :
-         S$$b.         \                     ;    ;
-         S$$$$          ;                   :    :
-         'TSS$$$s.      :                   ;    ;
-             TS$$Ss_    ;                   ;   :
-              `SSS$$$p./                   :    ;
-                  TS$$'            ;       ;    :
-                   "S              :       ;     ;
-                   /                ;      :     :
-                  /                 :            :
-                 /"-.                          .' ;
-                /    ""--..__          __..--""   :
-                             """"""""""
-'''
-
-logo13 = colors.RANDOM + '''
-             ________________________________________________
-            /                                                \\
-           |    _________________________________________     |
-           |   |                                         |    |
-           |   | Umbradge ~$                             |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |                                         |    |
-           |   |_________________________________________|    |
-           |                                                  |
-            \_________________________________________________/
-                   \___________________________________/
-                ___________________________________________
-             _-'    .-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.  --- `-_
-          _-'.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.  .-.-.`-_
-       _-'.-.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-`__`. .-.-.-.`-_
-    _-'.-.-.-.-. .-----.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-----. .-.-.-.-.`-_
- _-'.-.-.-.-.-. .---.-. .-------------------------. .-.---. .---.-.-.-.`-_
-:-------------------------------------------------------------------------:
-`---._.-------------------------------------------------------------._.---'
-'''
-
-logo14 = colors.RANDOM + '''
-      .____.
-   xuu$``$$$uuu.
- . $``$  $$$`$$$
-dP*$  $  $$$ $$$
-?k $  $  $$$ $$$
- $ $  $  $$$ $$$
- ":$  $  $$$ $$$
-  N$  $  $$$ $$$
-  $$  $  $$$ $$$
-   $  $  $$$ $$$
-   $  $  $$$ $$$
-   $  $  $$$ $$$
-   $  $  $$$ $$$
-   $  $  $$$ $$$
-   $$#$  $$$ $$$
-   $$'$  $$$ $$$
-   $$`R  $$$ $$$
-   $$$&  $$$ $$$
-   $#*$  $$$ $$$
-   $  $  $$$ @$$
-   $  $  $$$ $$$
-   $  $  $$$ $$$
-   $  $  $B$ $$&.
-   $  $  $D$ $$$$$muL.
-   $  $  $Q$ $$$$$  `"**mu..
-   $  $  $R$ $$$$$    k  `$$*t
-   $  @  $$$ $$$$$    k   $$!4
-   $ x$uu@B8u$NB@$uuuu6...$$X?
-   $ $(`RF`$`````R$ $$5`"""#"R
-   $ $" M$ $     $$ $$$      ?
-   $ $  ?$ $     T$ $$$      $
-   $ $F H$ $     M$ $$K      $  ..
-   $ $L $$ $     $$ $$R.     "d$$$$Ns.
-   $ $~ $$ $     N$ $$X      ."    "%2h
-   $ 4k f  $     *$ $$&      R       "iN
-   $ $$ %uz!     tuuR$$:     Buu      ?`:
-   $ $F          $??$8B      | '*Ned*$~L$
-   $ $k          $'@$$$      |$.suu+!' !$
-   $ ?N          $'$$@$      $*`      d:"
-   $ dL..........M.$&$$      5       d"P
- ..$.^"*I$RR*$C""??77*?      "nu...n*L*
-'$C"R   ``""!$*@#""` .uor    bu8BUU+!`
-'*@m@.       *d"     *$Rouxxd"```$
-     R*@mu.           "#$R *$    !
-     *%x. "*L               $     %.
-        "N  `%.      ...u.d!` ..ue$$$o..
-         @    ".    $*"""" .u$$$$$$$$$$$$beu...
-        8  .mL %  :R`     x$$$$$$$$$$$$$$$$$$$$$$$$$$WmeemeeWc
-       |$e!" "s:k 4      d$N"`"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$>
-       $$      "N @      $?$    F$$$$$$$$$$$$$$$$$$$$$$$$$$$$>
-       $@       ^%Uu..   R#8buu$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$>
-                  ```""*u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$>
-                         #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$>
-                          "5$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$>
-                            `*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$>
-                              ^#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$>
-                                 "*$$$$$$$$$$$$$$$$$$$$$$$$$$>
-                                   `"*$$$$$$$$$$$$$$$$$$$$$$$>
-                                       ^!$$$$$$$$$$$$$$$$$$$$>
-                                           `"#+$$$$$$$$$$$$$$>
-                                                 ""**$$$$$$$$>
-                                                        ```""
-'''
-
-logo15 = colors.RANDOM + '''
-  _____________________________________                        ________
- /     ________________________________| KLINGON COMBAT BLADE |________)
-|     |
-|     |                               /\\
-|     |                              / |\\
-|     |                             / /\ \\
-|     |                            / /  \ \\
-|     |                           / /    \ \\
-|     |                          /_/      \_\\
-|     |                          \    '`    /
-|     |                           )   ||   (
-|_____|___________________________|_  ||   |
-|     | TEMPERED DYRILLIUM BLADE  |   ||   |
-|     |                           |   ||   |
-|     |                           |   ||   |
-|     |                           |   ||   |
-|     |                           |   ||   |
-|     |                           |   ||   |
-|     |                           |   ||   |
-|     |                           |   ||   |
-|     |               /           |   ||   |           \\
-|     |              /(           |   ||   |           )\\
-|     |              |`\_         |   ||   |         _/'|
-|     |              |`. `-._     |   ||   |     _,-' ,'|
-|     |              (   ` . `-._ |  _--_  | _,-' , '   )
-|     |               `|._   ` . `-./.__.\.-' , '   _,-'
-|_____|________________|  `-._   ` | /  \ | '   _,-'
-|     | RETRACTABLE BLADES    `-._/ |_()_| \_,-'
-|     |                    ___.-'   ______   `-,
-|     |                   '-----.  |______|   /
-|     |                          \  ______   /
-|_____|__________________________|__\>__  |>
-|     | MACE HEAD                <|   <   >|
-|     |                            `.____.'
-|     |                              V   V
-|     |
-|     |_____________________________________________________   ________
- \__________________________________________________________| |________)
-'''
-
-random = random.choice([logo1,
-                        logo2,
-                        logo3,
-                        logo4,
-                        logo5,
-                        logo6,
-                        logo7,
-                        logo8,
-                        logo9,
-                        logo10,
-                        logo11,
-                        logo12,
-                        logo13,
-                        logo14,
-                        logo15])
-print(random)
+print(headers())
 
 Loop = 1
 while True:
@@ -575,7 +42,6 @@ while True:
     {8}-- Osint
     {9}-- Wireless Attacks
     {10}-- Anonymize
-    {0}-- Install & Update
     {99}-- Exit
     {100}--Donation
     '''
@@ -597,18 +63,44 @@ while True:
                 tools = colors.RED + '''
                 {1}-- Phishing
                 {2}-- Spear-phishing
-                {3}-- Profil Generator
+                {3}-- Profile Generator
                 {99}-- Exit
                 '''
                 print(tools)
                 choice = int(input(prompt))
+                if choice == 3:
+                    logo = colors.RANDOM + '''
+                      ____             __ _ _         ____                           _
+                     |  _ \ _ __ ___  / _(_) | ___   / ___| ___ _ __   ___ _ __ __ _| |_ ___  _ __
+                     | |_) | '__/ _ \| |_| | |/ _ \ | |  _ / _ \ '_ \ / _ \ '__/ _` | __/ _ \| '__|
+                     |  __/| | | (_) |  _| | |  __/ | |_| |  __/ | | |  __/ | | (_| | || (_) | |
+                     |_|   |_|  \___/|_| |_|_|\___|  \____|\___|_| |_|\___|_|  \__,_|\__\___/|_|
+                    '''
+                    print(logo)
+                    tools = colors.RED = '''
+                    {1}-- Facebook
+                    {2}-- Instagram
+                    {3}-- Twitter
+                    {4}-- LinkedIn
+                    {5}-- Gmail
+                    {6}-- OutLook
+                    {7}-- ProtonMail
+                    {99}-- Exit
+                    '''
+                    print(tools)
+                    choice = int(input(prompt))
+                    if choice == 1:
+                        from tools.SocialEngineering.Instagram.insta import createAccount
+                        createAccount()
+
+
 
         elif choice == 2:
           while 3:
               logo = colors.RANDOM + '''
                   ____  _          _ _    ____          _
                  / ___|| |__   ___| | |  / ___|___   __| | ___
-                 \___ \| '_ \ / _ \ | | | |   / _ \ / _` |/ _ \
+                 \___ \| '_ \ / _ \ | | | |   / _ \ / _` |/ _ \\
                   ___) | | | |  __/ | | | |__| (_) | (_| |  __/
                  |____/|_| |_|\___|_|_|  \____\___/ \__,_|\___|
 
@@ -625,69 +117,20 @@ while True:
               print(tools)
               choice = int(input(prompt))
               if choice == 1:
-                  path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
-                  os.system('cp tools/shellcodeLocal.c ' + path)
-                  time.sleep(3)
-                  print('\nI will return to the main menu in: ')
-                  print('\n5, ')
-                  time.sleep(1)
-                  print('4, ')
-                  time.sleep(1)
-                  print('3, ')
-                  time.sleep(1)
-                  print('2, ')
-                  time.sleep(1)
-                  print('1')
-                  exit()
+                  from tools.ShellCode.local import local
+                  local()
 
               elif choice == 2:
-                  path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
-                  os.system('cp tools/shellcodeDistant.c ' + path)
-                  time.sleep(3)
-                  print('\nI will return to the main menu in: ')
-                  print('\n5, ')
-                  time.sleep(1)
-                  print('4, ')
-                  time.sleep(1)
-                  print('3, ')
-                  time.sleep(1)
-                  print('2, ')
-                  time.sleep(1)
-                  print('1')
-                  exit()
+                  from tools.ShellCode.distant import distant
+                  distant()
 
               elif choice == 3:
-                  path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
-                  os.system('cp tools/webShell.php ' + path)
-                  time.sleep(3)
-                  print('\nI will return to the main menu in: ')
-                  print('\n5, ')
-                  time.sleep(1)
-                  print('4, ')
-                  time.sleep(1)
-                  print('3, ')
-                  time.sleep(1)
-                  print('2, ')
-                  time.sleep(1)
-                  print('1')
-                  exit()
+                  from tools.ShellCode.web import web
+                  web()
 
               elif choice == 4:
-                  path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
-                  os.system('cp tools/reverseShell.php ' + path)
-                  print('Don\'t forget to change IP and PORT in the shell (in the file named reverseShell.php, you can see the changes you must to do by a "//Change It")')
-                  time.sleep(3)
-                  print('\nI will return to the main menu in: ')
-                  print('\n5, ')
-                  time.sleep(1)
-                  print('4, ')
-                  time.sleep(1)
-                  print('3, ')
-                  time.sleep(1)
-                  print('2, ')
-                  time.sleep(1)
-                  print('1')
-                  exit()
+                  from tools.ShellCode.reverse import reverse
+                  reverse()
 
               elif choice == 99:
                   exit()
@@ -722,18 +165,20 @@ while True:
                 '''
                 print(logo)
                 tools = colors.RED + '''
-                {1}-- Email Traffic
-                {2}-- FTP Passwords
-                {3}-- Web Traffics
-                {4}-- Telnet Passwords
-                {5}-- Router Configuration
-                {6}-- DNS Traffic
-                {7}-- TCP/IP Sniffin12g
+                {1}-- FTP Credentials
+                {2}-- Web Traffics
+                {3}-- Telnet Passwords
+                {4}-- Router Configuration
+                {5}-- DNS Traffic
+                {6}-- TCP/IP Sniffin12g
                 {99}-- Exit
                 '''
 
                 print(tools)
                 choice = int(input(prompt))
+                if choice == 1:
+                    from tools.Sniffing.ftpCredentials import ftp
+                    ftp()
 
               if choice == 2:
                 logo = colors.RANDOM + '''
@@ -933,64 +378,32 @@ while True:
               {1}-- Set HTTP Proxy
               {2}-- Set HTTPS Proxy
               {3}-- Change MAC Adress
-              {4}-- VPN (OpenVPN)
+              {4}-- Enable Firewall
+              {99}-- Exit
               '''
               print(tools)
               choice = int(input(prompt))
               if choice == 1:
-                  ip = input('Proxy\'s IP Adress: ')
-                  port = input('Proxy\'s Port: ')
-                  os.system('export http_proxy=http://' + ip + ':' + port)
-                  exit()
+
+                  from tools.anonymize.httpProxy import httpProxy
+                  httpProxy()
               if choice == 2:
-                  ip = input('Proxy\'s IP Adress: ')
-                  port = input('Proxy\'s Port: ')
-                  os.system('export https_proxy=https://' + ip + ':' + port)
-                  exit()
+
+                  from tools.anonymize.httpsProxy import httpsProxy
+                  httpsProxy()
               if choice == 3:
-                  choice = input("Do You Want to Chose You're Next MAC's Adress (default's choice = n) ? <y/n>")
 
-                  if choice == 'n' or 'N' or 'no' or 'NO':
-                      device = input("Do You Now Your Network's Device's Type ? <y/n>")
-                      if device == 'y' or 'Y' or 'yes' or 'YES':
-                          device = input("Network's Device's Type: ")
-                          print('\n')
-                          os.system('ifconfig \t' + device + '\tdown')
-                          os.system('macchanger -r ' + device)
-                          os.system('ifconfig\t' + device + '\tup')
-                          exit()
-                      if device == 'n' or 'N' or 'no' or 'NO':
-                          print("To Now Your Network's Device's Type, type 'ifconfig'")
-                          exit()
-
-                  if choice == 'y' or 'Y' or 'yes' or 'YES':
-                      macAdress = input("Fill Your Next Adress: ")
-                      device = input("Do You Now Your Network's Device's Type ? <y/n>")
-                      if device == 'y' or 'Y' or 'yes' or 'YES':
-                          device = input("Network's Device's Type: ")
-                          os.system('ifconfig ' + device + ' down')
-                          os.system('macchanger --mac ' + macAdress, device)
-                          os.system('ifconfig' + device + ' up')
-                          exit()
-                      if device == 'n' or 'N' or 'no' or 'NO':
-                          print("To Now Your Network's Device's Type, type 'ifconfig'")
-                          exit()
+                  from tools.anonymize.macAdress import macAdress
+                  macAdress()
               if choice == 4:
-                  print("Not Ready For The Moment")
-
+                  os.system('ufw enable')
+              if choice == 99:
+                  exit()
 
         elif choice == 99:
           exit()
 
         elif choice == 100:
           while 12:
-              logo = colors.RANDOM + '''
-                ____                    _   _
-               |  _ \  ___  _ __   __ _| |_(_) ___  _ __
-               | | | |/ _ \| '_ \ / _` | __| |/ _ \| '_ \\
-               | |_| | (_) | | | | (_| | |_| | (_) | | | |
-               |____/ \___/|_| |_|\__,_|\__|_|\___/|_| |_|
-               '''
-              print(logo)
-              print("If You Like My Project You Can Donate To My Monero's Wallet With This Adress: 41sKFAdaJFaWrcvGSbVPa2cdForXPufks2GdTFFtrMfoQfjeXJW7XnCaVDRPvUApgWQa26JNvmaBXP8HpRcz2ep23CBo7GU")
-              exit()
+              from tools.donation import donation
+              donation()
