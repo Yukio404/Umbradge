@@ -15,6 +15,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import numpy as np
+from tools.Osint.Instagram.searchInstagram import searchInstagram
+from tools.Osint.Twitter.searchTwitter import searchTwitter
+from tools.Osint.usernameLookup.searchUsername import searchUserName
+from tools.Osint.ipLookup.ipLookUp import ipFinder
+from tools.Osint.EmployeeLookup.searchEmployee import employee_lookup
+from tools.Osint.PhoneLookUp.phoneLookUp import phoneLookup
+from tools.Osint.Traceroute.traceroute import traceroute
 
 if not os.geteuid() == 0:
     sys.exit("\nOnly root can run this script\n")
@@ -325,19 +332,32 @@ while True:
               tools = colors.RED + '''
               {1}-- Instagram Info
               {2}-- Twitter Info
-              {3}-- Person LookUp
-              {4}-- Username LookUp
-              {5}-- IP LookUp
-              {6}-- Employee Search
-              {7}-- Phone LookUp
-              {8}-- Facial Recognition
-              {9}-- LinkedIn LookUp
-              {10}-- Geolocation
+              {3}-- Username LookUp
+              {4}-- IP LookUp
+              {5}-- Employee Search
+              {6}-- Phone LookUp
+              {7}-- Traceroute
               {99}-- Exit
               '''
               print(tools)
               choice = int(input(prompt))
 
+              if choice == 1:
+                  searchInstagram()
+              elif choice == 2:
+                  searchTwitter()
+              elif choice == 3:
+                  searchUserName()
+              elif choice == 4:
+                  ipFinder()
+              elif choice == 5:
+                  employee_lookup()
+              elif choice == 6:
+                  phoneLookup()
+              elif choice == 7:
+                  traceroute()
+              elif choice == 99:
+                  exit()
         elif choice == 9:
           while 10:
               logo = colors.RANDOM + '''
