@@ -1,6 +1,6 @@
 def reverse():
     path = input('Enter The Path Where You Want The ShellCode\'s File Must To Be: ')
-    os.system('cp tools/reverseShell.php ' + path)
+    os.system('cp /home/yukio/Bureau/Umbradge/tools/ShellCode/reverseShell.php ' + path)
     print('Don\'t forget to change IP and PORT in the shell (in the file named reverseShell.php, you can see the changes you must to do by a "//Change It")')
     time.sleep(3)
     print('\nI will return to the main menu in: ')
